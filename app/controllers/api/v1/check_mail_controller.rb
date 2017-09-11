@@ -58,6 +58,6 @@ class Api::V1::CheckMailController < ApplicationController
   end
 
   def required_params
-    params.permit(:first_name, :last_name, :company_title)
+    params.permit(:first_name, :last_name, :company_title, :per_page, :page)
   end
 end
