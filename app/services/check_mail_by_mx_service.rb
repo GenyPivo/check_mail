@@ -1,5 +1,3 @@
-require 'net/smtp'
-
 class CheckMailByMxService
   EHLO_DOMAIN = 'mail.ru'.freeze
   MAIL_FROM = 'test121@mail.ru'.freeze

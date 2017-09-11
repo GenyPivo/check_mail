@@ -1,7 +1,5 @@
-require 'resolv'
-
 class MxCheckerService
-  DEFAULT_DOMAIN_ZONES = %w(com net org).freeze
+  DEFAULT_DOMAIN_ZONES = %w(com net org ua).freeze
 
   def initialize
     @domain_zones = DEFAULT_DOMAIN_ZONES
