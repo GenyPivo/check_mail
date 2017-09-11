@@ -9,9 +9,10 @@ class MailGeneratorService
   def generate_mail_addresses(domains)
     raise ArgumentError, 'domains param must be an array' unless domains.is_a? Array
     prefixes = generate_prefixes.map(&:join)
-    domains.each_with_object(Array.new) do |domain, acc|
+    domains.each_with_object(Hash.new) do |domain, acc|
+      acc[domain] = Array.new
       prefixes.each do |prefix|
-        acc << "#{prefix}@#{domain}"
+        acc[domain] << "#{prefix.downcase}@#{domain}"
       end
     end
   end

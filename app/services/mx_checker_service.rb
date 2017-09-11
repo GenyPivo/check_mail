@@ -1,7 +1,7 @@
 require 'resolv'
 
 class MxCheckerService
-  DEFAULT_DOMAIN_ZONES = %w(com net org ua info biz eu us).freeze
+  DEFAULT_DOMAIN_ZONES = %w(com net org).freeze
 
   def initialize
     @domain_zones = DEFAULT_DOMAIN_ZONES
@@ -17,8 +17,6 @@ class MxCheckerService
     end
     collect_mx_records(domains).delete_if { |_k,v| v.blank? }
   end
-
-  private
 
   def collect_mx_records(domains)
     return unless domains.is_a? Array
