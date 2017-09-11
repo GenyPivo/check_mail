@@ -5,8 +5,8 @@ class Api::V1::CheckMailController < ApplicationController
   before_action :init_check_mail_services, only: :index
 
   def index
-    @available_mailboxes = @available_mailboxes.paginate(page: params[:page],
-                                                         per_page: DEFAULT_PER_PAGE)
+    @available_mailboxes = @available_mailboxes.paginate(per_page: params[:per_page] || DEFAULT_PER_PAGE,
+                                                         page: params[:page])
     render json: { status: :success, response: @available_mailboxes }
   end
 
