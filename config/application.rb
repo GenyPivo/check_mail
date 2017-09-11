@@ -1,6 +1,8 @@
 require_relative 'boot'
 
-require 'rails/all'
+require 'action_controller/railtie'
+require 'active_model/railtie'
+require 'action_view/railtie'
 require 'resolv'
 require 'net/smtp'
 require 'will_paginate/array'
