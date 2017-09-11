@@ -5,8 +5,8 @@ class MailRequest
                 :page, :per_page
 
   validates_presence_of :first_name, :last_name, :company_title
-  validates :per_page, numericality: { only_integer: true }, if: 'per_page.present?'
-  validates :page, numericality: { only_integer: true }, if: 'page.present?'
+  validates :per_page, numericality: { only_integer: true }, if: -> { per_page.present? }
+  validates :page, numericality: { only_integer: true }, if: -> { page.present? }
 
   def initialize(params)
     @first_name = params[:first_name]
