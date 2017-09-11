@@ -4,21 +4,22 @@ class MailGeneratorService
   def initialize(first_name, last_name)
     @first_name = first_name
     @last_name = last_name
-    @domain_zones = DEFAULT_DOMAIN_ZONES
   end
+
+  def generate_mail_addresses(domains)
+    raise ArgumentError, 'domains param must be an array' unless domains.is_a? Array
+    prefixes = generate_prefixes.map(&:join)
+    domains.each_with_object(Array.new) do |domain, acc|
+      prefixes.each do |prefix|
+        acc << "#{prefix}@#{domain}"
+      end
+    end
+  end
+
+  private
 
   def generate_prefixes
-    first_iteration = build_from_batch(first_batch)
-    second_iteration = build_from_batch(second_batch)
-    first_iteration.each_with_object(Hash.new) do |(k,v), acc|
-      acc[k] = v + second_iteration[k]
-    end
-  end
-
-  def build_from_batch(batch)
-    @domain_zones.each_with_object(Hash.new) do |zone, acc|
-      acc[zone.to_sym] = batch
-    end
+    first_batch + second_batch
   end
 
   def first_batch
